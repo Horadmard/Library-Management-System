@@ -499,7 +499,7 @@ void _RemoveBook(Book RBook,Report R){
     X.seekg((code-1)*sizeof(Book),ios::beg);
     X.write((char*)&RBook,sizeof(Book));
 
-//dar daste tamir---------------------------
+//to be fixed---------------------------
     while(Y.read((char*)&R,sizeof(Report))){
         if(R.Book_code==RBook.Code && R.Expire==false){
             R.Expire=true;
@@ -1195,7 +1195,7 @@ int main(){
     User U;
     Report R;
 //------------------------------------------
-    time_t t=time(0);   // get time now
+    time_t t=time(0);   // get current time from your system
     tm*now=localtime(&t);
     Today.Year=(now->tm_year + 1900);
     Today.Month=(now->tm_mon + 1);
