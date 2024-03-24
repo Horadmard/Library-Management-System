@@ -1,7 +1,6 @@
 #include <iostream>
 #include <fstream>
 #include <string.h>
-#include <ctime>
 
 #include "Book.cpp"
 #include "Date.cpp"
@@ -12,7 +11,7 @@
 
 //------------------------------------------
 using namespace std;
-char File_Name[] = "UserData.Dat", File_Name2[] = "BookData.Dat", File_Name3[] = "ReportlendData.Dat", File_Name4[] = "ReportReserveData.Dat";
+char File_Name[] = "../data/UserData.Dat", File_Name2[] = "../data/BookData.Dat", File_Name3[] = "../data/ReportlendData.Dat", File_Name4[] = "../data/ReportReserveData.Dat";
 int _FileSize(char a[]);
 int main();
 int User_Name;
@@ -528,6 +527,7 @@ bool Log_In(User U)
     }
     X.close();
 }
+
 int _FileSize(char a[])
 {
     fstream Y(a, ios::in | ios::binary);
