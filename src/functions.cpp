@@ -1169,7 +1169,7 @@ void _Return()
 
                 if (_CheckReserve(U, B, D, R))
                 {
-                    
+
                     File.seekg((R.Book_code - 1) * sizeof(Book), ios::beg);
                     File.read((char *)&B, sizeof(Book));
 
@@ -1191,10 +1191,16 @@ void _Return()
     return;
 }
 
-void Admin_Return(User U, Book B, Date D, Report R)
+void Admin_Return()
 {
+    User U;
+    Book B;
+    Date D;
+    Report R;
+
     fstream X(File_Name2, ios::out | ios::in | ios::binary);
     fstream Y(File_Name3, ios::out | ios::in | ios::binary);
+
     int c, i = 0, j = 0, User_code;
 
     cout << "Enter a Username: ";
@@ -1203,10 +1209,13 @@ void Admin_Return(User U, Book B, Date D, Report R)
     {
         system("cls");
         cout << "Not Exist!";
+
         X.close();
         Y.close();
+
         return;
     }
+
     Admin_PrintMyBooks(U, B, D, R, User_code);
 
     cout << endl
@@ -1215,8 +1224,10 @@ void Admin_Return(User U, Book B, Date D, Report R)
 
     if (c == 0)
     {
+
         X.close();
         Y.close();
+
         return;
     }
 
@@ -1239,7 +1250,7 @@ void Admin_Return(User U, Book B, Date D, Report R)
                 X.seekg((R.Book_code - 1) * sizeof(Book), ios::beg);
                 X.write((char *)&B, sizeof(Book));
 
-                if (_CheckReserve(U, B, D, R))
+                if (_CheckReserve())
                 {
                     X.seekg((R.Book_code - 1) * sizeof(Book), ios::beg);
                     X.read((char *)&B, sizeof(Book));
@@ -1255,8 +1266,10 @@ void Admin_Return(User U, Book B, Date D, Report R)
         }
         j++;
     }
+
     X.close();
     Y.close();
+    
     return;
 }
 
