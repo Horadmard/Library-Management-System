@@ -921,25 +921,36 @@ void Admin_PrintLendedBooks(User U, Book B, Date D, Report R)
     return;
 }
 
-void Admin_PrintReports(Report R, char File_Name[])
+void Admin_PrintReports(char File_Name[])
 {
+
+    Report R;
+
+
     fstream Z(File_Name, ios::in | ios::binary);
+
     while (Z.read((char *)&R, sizeof(Report)))
     {
         cout << R << "---------------" << endl;
     }
+
     Z.close();
+
     return;
 }
-void Admin_PrintReportsinPeriod(Report R)
+void Admin_PrintReportsinPeriod()
 {
-    fstream Z(File_Name3, ios::in | ios::binary);
+    Report R;
     Date S, E;
+
+    fstream Z(File_Name3, ios::in | ios::binary);
+
     cout << "From: ";
     cin >> S;
     cout << "To: ";
     cin >> E;
     cout << endl;
+
     while (Z.read((char *)&R, sizeof(Report)))
     {
         if (R.Start >= S && R.End <= E)
@@ -951,14 +962,24 @@ void Admin_PrintReportsinPeriod(Report R)
                  << "---------------" << endl;
         }
     }
+
     Z.close();
+
     return;
 }
 
-void Admin_PrintLateBooks(User U, Book B, Date D, Report R)
+void Admin_PrintLateBooks()
 {
+
+    User U; 
+    Book B;
+    Date D;
+    Report R;
+
+
     fstream X(File_Name2, ios::in | ios::binary);
     fstream Y(File_Name3, ios::in | ios::binary);
+
     int i = 1;
 
     while (Y.read((char *)&R, sizeof(Report)))
@@ -974,12 +995,18 @@ void Admin_PrintLateBooks(User U, Book B, Date D, Report R)
 
     X.close();
     Y.close();
+
     return;
 }
-void Admin_PrintPopularBooks(Book B, Report R)
+void Admin_PrintPopularBooks()
 {
+    Book B;
+    Report R;
+
+
     fstream Z(File_Name3, ios::in | ios::binary);
     fstream Y(File_Name2, ios::in | ios::binary);
+
     int a[_FileSize(File_Name2) / sizeof(Book)] = {0}, m = 0;
 
     for (int i = 0; i < _FileSize(File_Name2) / sizeof(Book); i++)
@@ -991,8 +1018,10 @@ void Admin_PrintPopularBooks(Book B, Report R)
                 a[i]++;
             }
         }
+
         Z.close();
         Z.open(File_Name3, ios::in | ios::binary);
+
     }
     for (int i = 0; i < _FileSize(File_Name2) / sizeof(Book); i++)
     {
@@ -1010,8 +1039,11 @@ void Admin_PrintPopularBooks(Book B, Report R)
                  << "---------------" << endl;
         }
     }
+
     Z.close();
+    
     return;
+
 }
 void Admin_PrintActiveUsers(User U, Report R)
 {

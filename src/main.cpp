@@ -79,7 +79,7 @@ int main()
                 {
                 case 1:
                     system("cls");
-                    _AddUser(U);
+                    _AddUser();
                     break;
                 case 2:
                     system("cls");
@@ -88,7 +88,7 @@ int main()
                     break;
                 case 3:
                     system("cls");
-                    _EditUser(U);
+                    _EditUser();
                     break;
                 case 4:
                     system("cls");
@@ -167,7 +167,7 @@ int main()
             case 0:
                 system("cls");
                 cout << "Goodbye " << endl; //<<U.Name<<endl
-                goto lable1;
+                main();
                 break;
             default:
                 cout << "Input Error" << endl;
@@ -188,23 +188,23 @@ int main()
             {
             case 1:
                 system("cls");
-                _SearchBook(B); //*
+                _SearchBook();
                 break;
             case 2:
                 system("cls");
-                _Lend(U, B, D, R);
+                _Lend();
                 break;
             case 3:
                 system("cls");
-                _PrintMyReturnedBooks(U, B, D, R);
+                _PrintMyReturnedBooks();
                 break;
             case 4:
                 system("cls");
-                _PrintMyBooks(U, B, D, R);
+                _PrintMyBooks();
                 break;
             case 5:
                 system("cls");
-                _Return(U, B, D, R);
+                _Return();
                 break;
             case 0:
                 system("cls");
