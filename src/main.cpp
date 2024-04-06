@@ -18,19 +18,15 @@ int main();
 int User_Name;
 
 
-bool Log_In(User U);
+bool Log_In();
 
 
 int main()
 {
-    Date D;
-    Book B;
-    User U;
-    Report R;
 
     int Switch;
 
-    if (!Log_In(U)){
+    if (!Log_In()){
 
         do
         {
@@ -43,11 +39,11 @@ int main()
             {
             case 1:
                 system("cls");
-                _PrintBooKs(B);
+                _PrintBooKs();
                 break;
             case 2:
                 system("cls");
-                _AddBook(B);
+                _AddBook();
                 break;
             case 3:
                 system("cls");
@@ -56,15 +52,15 @@ int main()
                 switch (Switch)
                 {
                 case 1:
-                    _PrintBooKs(B);
-                    _RemoveBook(B, R);
+                    _PrintBooKs();
+                    _RemoveBook();
                     break;
                 case 2:
-                    _PrintBooKs(B);
-                    _EditBook(B);
+                    _PrintBooKs();
+                    _EditBook();
                     break;
                 case 3:
-                    _SearchBook(B);
+                    _SearchBook();
                     break;
                 case 0:
                     system("cls");
@@ -73,7 +69,7 @@ int main()
                 break;
             case 4:
                 system("cls");
-                Admin_PrintLendedBooks(U, B, D, R);
+                Admin_PrintLendedBooks();
                 break;
             case 5:
                 system("cls");
@@ -87,8 +83,8 @@ int main()
                     break;
                 case 2:
                     system("cls");
-                    _PrintUser(U);
-                    _RemoveUser(U, R);
+                    _PrintUser();
+                    _RemoveUser();
                     break;
                 case 3:
                     system("cls");
@@ -96,11 +92,11 @@ int main()
                     break;
                 case 4:
                     system("cls");
-                    _SearchUser(U);
+                    _SearchUser();
                     break;
                 case 5:
                     system("cls");
-                    _PrintUser(U);
+                    _PrintUser();
                     break;
                 case 0:
                     system("cls");
@@ -115,11 +111,11 @@ int main()
                 {
                 case 1:
                     system("cls");
-                    Admin_Lend(B, R, D, U);
+                    Admin_Lend();
                     break;
                 case 2:
                     system("cls");
-                    Admin_Return(U, B, D, R);
+                    Admin_Return();
                     break;
                 case 3:
                     system("cls");
@@ -138,25 +134,25 @@ int main()
                 case 1:
                     system("cls");
                     cout << "------<Lend Reports>-------\n";
-                    Admin_PrintReports(R, File_Name3);
+                    Admin_PrintReports(File_Name3);
                     cout << "-----<Reserve Reports>-----\n";
-                    Admin_PrintReports(R, File_Name4);
+                    Admin_PrintReports(File_Name4);
                     break;
                 case 2:
                     system("cls");
-                    Admin_PrintLateBooks(U, B, D, R);
+                    Admin_PrintLateBooks();
                     break;
                 case 3:
                     system("cls");
-                    Admin_PrintPopularBooks(B, R);
+                    Admin_PrintPopularBooks();
                     break;
                 case 4:
                     system("cls");
-                    Admin_PrintActiveUsers(U, R);
+                    Admin_PrintActiveUsers();
                     break;
                 case 5:
                     system("cls");
-                    Admin_PrintReportsinPeriod(R);
+                    Admin_PrintReportsinPeriod();
                     break;
                 case 0:
                     system("cls");
