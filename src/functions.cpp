@@ -1041,14 +1041,18 @@ void Admin_PrintPopularBooks()
     }
 
     Z.close();
-    
+
     return;
 
 }
-void Admin_PrintActiveUsers(User U, Report R)
+void Admin_PrintActiveUsers()
 {
+    User U;
+    Report R;
+
     fstream Z(File_Name3, ios::in | ios::binary);
     fstream X(File_Name, ios::in | ios::binary);
+
     int a[_FileSize(File_Name) / sizeof(User)] = {0}, m = 0;
 
     for (int i = 0; i < _FileSize(File_Name) / sizeof(User); i++)
@@ -1060,13 +1064,17 @@ void Admin_PrintActiveUsers(User U, Report R)
                 a[i]++;
             }
         }
+
         Z.close();
         Z.open(File_Name3, ios::in | ios::binary);
+
     }
+
     for (int i = 0; i < _FileSize(File_Name) / sizeof(User); i++)
     {
         m += a[i];
     }
+
     m /= (_FileSize(File_Name) / sizeof(User));
     cout << "------<Active Users>------\n";
     for (int i = 0; i < _FileSize(File_Name) / sizeof(User); i++)
@@ -1079,14 +1087,24 @@ void Admin_PrintActiveUsers(User U, Report R)
                  << "---------------" << endl;
         }
     }
+
     Z.close();
     X.close();
+
     return;
 }
-bool _CheckReserve(User U, Book B, Date D, Report R)
+bool _CheckReserve()
 {
+
+    User U;
+    Book B;
+    Date D;
+    Report R;
+
     fstream X(File_Name4, ios::out | ios::in | ios::binary);
+
     int o = 0;
+
     while (X.read((char *)&R, sizeof(Report)))
     {
         if (R.Book_code == B.Code && R.Expire == false)
@@ -1095,18 +1113,29 @@ bool _CheckReserve(User U, Book B, Date D, Report R)
             X.seekg((o) * sizeof(Report), ios::beg);
             X.write((char *)&R, sizeof(Report));
             Reserve_Lend(U, B, D, R, R.Book_code, R.User_name);
+
             return true;
             break;
         }
         o++;
     }
+
     X.close();
+
     return false;
 }
-void _Return(User U, Book B, Date D, Report R)
+void _Return()
 {
-    fstream X(File_Name2, ios::out | ios::in | ios::binary);
-    fstream Y(File_Name3, ios::out | ios::in | ios::binary);
+
+    User U;
+    Book B;
+    Date D;
+    Report R;
+
+
+    fstream File(File_Name2, ios::out | ios::in | ios::binary);
+    fstream File1(File_Name3, ios::out | ios::in | ios::binary);
+
     int c, i = 0, j = 0, o = 0, T = 0;
 
     _PrintMyBooks(U, B, D, R);
@@ -1116,12 +1145,12 @@ void _Return(User U, Book B, Date D, Report R)
 
     if (c == 0)
     {
-        X.close();
-        Y.close();
+        File.close();
+        File1.close();
         return;
     }
 
-    while (Y.read((char *)&R, sizeof(Report)))
+    while (File1.read((char *)&R, sizeof(Report)))
     {
         if (R.User_name == User_Name && R.Expire == false)
         {
@@ -1129,24 +1158,25 @@ void _Return(User U, Book B, Date D, Report R)
             if (i == c)
             {
                 R.Expire = true;
-                Y.seekg((j) * sizeof(Report), ios::beg);
-                Y.write((char *)&R, sizeof(Report));
+                File1.seekg((j) * sizeof(Report), ios::beg);
+                File1.write((char *)&R, sizeof(Report));
 
-                X.seekg((R.Book_code - 1) * sizeof(Book), ios::beg);
-                X.read((char *)&B, sizeof(Book));
+                File.seekg((R.Book_code - 1) * sizeof(Book), ios::beg);
+                File.read((char *)&B, sizeof(Book));
                 B.Numbers = B.Numbers + 1;
-                X.seekg((R.Book_code - 1) * sizeof(Book), ios::beg);
-                X.write((char *)&B, sizeof(Book));
+                File.seekg((R.Book_code - 1) * sizeof(Book), ios::beg);
+                File.write((char *)&B, sizeof(Book));
 
                 if (_CheckReserve(U, B, D, R))
                 {
-                    X.seekg((R.Book_code - 1) * sizeof(Book), ios::beg);
-                    X.read((char *)&B, sizeof(Book));
+                    
+                    File.seekg((R.Book_code - 1) * sizeof(Book), ios::beg);
+                    File.read((char *)&B, sizeof(Book));
 
                     B.Numbers = B.Numbers - 1;
 
-                    X.seekg((R.Book_code - 1) * sizeof(Book), ios::beg);
-                    X.write((char *)&B, sizeof(Book));
+                    File.seekg((R.Book_code - 1) * sizeof(Book), ios::beg);
+                    File.write((char *)&B, sizeof(Book));
                 }
 
                 break;
@@ -1155,10 +1185,12 @@ void _Return(User U, Book B, Date D, Report R)
         j++;
     }
 
-    X.close();
-    Y.close();
+    File.close();
+    File1.close();
+
     return;
 }
+
 void Admin_Return(User U, Book B, Date D, Report R)
 {
     fstream X(File_Name2, ios::out | ios::in | ios::binary);

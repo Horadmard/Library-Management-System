@@ -167,6 +167,7 @@ int main()
             case 0:
                 system("cls");
                 cout << "Goodbye " << endl; //<<U.Name<<endl
+                User_Name = -1;
                 main();
                 break;
             default:
