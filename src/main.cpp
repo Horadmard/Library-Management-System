@@ -9,13 +9,14 @@
 #include "Transaction.cpp"
 #include "time.cpp"
 
-//------------------------------------------
 using namespace std;
+
+
 char File_Name[] = "../data/UserData.Dat", File_Name2[] = "../data/BookData.Dat", File_Name3[] = "../data/ReportlendData.Dat", File_Name4[] = "../data/ReportReserveData.Dat";
 int _FileSize(char a[]);
 int main();
 int User_Name;
-//------------------------------------------
+
 
 bool Log_In(User U);
 void _AddUser(User new_User)
@@ -35,6 +36,8 @@ void _AddUser(User new_User)
     cout << "Done!" << endl;
     return;
 }
+
+
 void Admin_AddUser(User new_User)
 {
     fstream X(File_Name, ios::app | ios::binary);
@@ -508,10 +511,8 @@ bool Log_In(User U)
                 cout << "Welcome " << U.Name << "(" << Access << ")" << endl;
                 User_Name = UserI;
                 X.close();
-                if (U.Ultimate_Access)
-                    return true;
-                else
-                    return false;
+        
+                return U.Ultimate_Access;
             }
             else
             {
