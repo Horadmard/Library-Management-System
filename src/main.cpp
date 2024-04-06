@@ -133,7 +133,8 @@ void _RemoveUser(User RUser, Report R)
         }
         j++;
     }
-    //-------------------------------------------
+
+
     X.close();
     Y.close();
     Z.close();
@@ -299,6 +300,7 @@ void _EditBook(Book RBook)
     X.write((char *)&RBook, sizeof(Book));
     X.close();
 }
+
 void _SearchUser(User user)
 {
     fstream X(File_Name, ios::in | ios::binary);
@@ -410,7 +412,8 @@ void _RemoveBook(Book RBook, Report R)
         }
         j++;
     }
-    //-------------------------------------------
+
+
     X.close();
     Y.close();
     Z.close();
@@ -1186,7 +1189,7 @@ void Admin_Return(User U, Book B, Date D, Report R)
     return;
 }
 
-//----------------------------------------------------------------------
+
 int main()
 {
     Date D;
@@ -1195,9 +1198,9 @@ int main()
     Report R;
 
     int Switch;
-lable1:
+
     if (!Log_In(U)){
-        
+
         do
         {
             cout << "Today: " << Today << endl
