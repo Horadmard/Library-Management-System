@@ -19,6 +19,7 @@ int User_Name;
 
 
 bool Log_In(User U);
+
 void _AddUser(User new_User)
 {
     fstream X(File_Name, ios::app | ios::binary);
@@ -1195,194 +1196,197 @@ int main()
 
     int Switch;
 lable1:
-    if (!Log_In(U))
-        goto labble2;
-    do
-    {
-        cout << "Today: " << Today << endl
-             << "1 - Book List\n2 - Add new Book" << endl;
-        cout << "3 - Remove / Edit / Search a Book\n4 - Print Lended Books\n5 - Add / Remove / Edit / Search / Print a User" << endl;
-        cout << "6 - Lend / Return / Reserve a Book\n7 - Reports\n0 - Log_out" << endl;
-        cin >> Switch;
-        switch (Switch)
+    if (!Log_In(U)){
+        
+        do
         {
-        case 1:
-            system("cls");
-            _PrintBooKs(B);
-            break;
-        case 2:
-            system("cls");
-            _AddBook(B);
-            break;
-        case 3:
-            system("cls");
-            cout << "1 - Remove\n2 - Edit\n3 - Search\n0 - Back\n";
-            cin >> Switch;
-            switch (Switch)
-            {
-            case 1:
-                _PrintBooKs(B);
-                _RemoveBook(B, R);
-                break;
-            case 2:
-                _PrintBooKs(B);
-                _EditBook(B);
-                break;
-            case 3:
-                _SearchBook(B);
-                break;
-            case 0:
-                system("cls");
-                break;
-            }
-            break;
-        case 4:
-            system("cls");
-            Admin_PrintLendedBooks(U, B, D, R);
-            break;
-        case 5:
-            system("cls");
-            cout << "1 - Add\n2 - Remove\n3 - Edit\n4 - Search\n5 - Print all Users\n0 - Back\n";
+            cout << "Today: " << Today << endl
+                << "1 - Book List\n2 - Add new Book" << endl;
+            cout << "3 - Remove / Edit / Search a Book\n4 - Print Lended Books\n5 - Add / Remove / Edit / Search / Print a User" << endl;
+            cout << "6 - Lend / Return / Reserve a Book\n7 - Reports\n0 - Log_out" << endl;
             cin >> Switch;
             switch (Switch)
             {
             case 1:
                 system("cls");
-                _AddUser(U);
+                _PrintBooKs(B);
                 break;
             case 2:
                 system("cls");
-                _PrintUser(U);
-                _RemoveUser(U, R);
+                _AddBook(B);
                 break;
             case 3:
                 system("cls");
-                _EditUser(U);
+                cout << "1 - Remove\n2 - Edit\n3 - Search\n0 - Back\n";
+                cin >> Switch;
+                switch (Switch)
+                {
+                case 1:
+                    _PrintBooKs(B);
+                    _RemoveBook(B, R);
+                    break;
+                case 2:
+                    _PrintBooKs(B);
+                    _EditBook(B);
+                    break;
+                case 3:
+                    _SearchBook(B);
+                    break;
+                case 0:
+                    system("cls");
+                    break;
+                }
                 break;
             case 4:
                 system("cls");
-                _SearchUser(U);
+                Admin_PrintLendedBooks(U, B, D, R);
                 break;
             case 5:
                 system("cls");
-                _PrintUser(U);
+                cout << "1 - Add\n2 - Remove\n3 - Edit\n4 - Search\n5 - Print all Users\n0 - Back\n";
+                cin >> Switch;
+                switch (Switch)
+                {
+                case 1:
+                    system("cls");
+                    _AddUser(U);
+                    break;
+                case 2:
+                    system("cls");
+                    _PrintUser(U);
+                    _RemoveUser(U, R);
+                    break;
+                case 3:
+                    system("cls");
+                    _EditUser(U);
+                    break;
+                case 4:
+                    system("cls");
+                    _SearchUser(U);
+                    break;
+                case 5:
+                    system("cls");
+                    _PrintUser(U);
+                    break;
+                case 0:
+                    system("cls");
+                    break;
+                }
+                break;
+            case 6:
+                system("cls");
+                cout << "1 - Lend\n2 - Return\n0 - Back\n";
+                cin >> Switch;
+                switch (Switch)
+                {
+                case 1:
+                    system("cls");
+                    Admin_Lend(B, R, D, U);
+                    break;
+                case 2:
+                    system("cls");
+                    Admin_Return(U, B, D, R);
+                    break;
+                case 3:
+                    system("cls");
+                    break;
+                case 0:
+                    system("cls");
+                    break;
+                }
+                break;
+            case 7:
+                system("cls");
+                cout << "1 - Print all Reports\n2 - Print late Books\n3 - Papular Books\n4 - Active Users\n5 - Reports In a period of time\n0 - Back\n";
+                cin >> Switch;
+                switch (Switch)
+                {
+                case 1:
+                    system("cls");
+                    cout << "------<Lend Reports>-------\n";
+                    Admin_PrintReports(R, File_Name3);
+                    cout << "-----<Reserve Reports>-----\n";
+                    Admin_PrintReports(R, File_Name4);
+                    break;
+                case 2:
+                    system("cls");
+                    Admin_PrintLateBooks(U, B, D, R);
+                    break;
+                case 3:
+                    system("cls");
+                    Admin_PrintPopularBooks(B, R);
+                    break;
+                case 4:
+                    system("cls");
+                    Admin_PrintActiveUsers(U, R);
+                    break;
+                case 5:
+                    system("cls");
+                    Admin_PrintReportsinPeriod(R);
+                    break;
+                case 0:
+                    system("cls");
+                    break;
+                }
+                break;
+            case 8:
+                system("cls");
+                _AddUser(U); //*
+                system("cls");
                 break;
             case 0:
                 system("cls");
+                cout << "Goodbye " << endl; //<<U.Name<<endl
+                goto lable1;
+                break;
+            default:
+                cout << "Input Error" << endl;
                 break;
             }
-            break;
-        case 6:
-            system("cls");
-            cout << "1 - Lend\n2 - Return\n0 - Back\n";
+        } while (1);
+
+    }else{
+
+        do
+        {
+            cout << "Today: " << Today << endl
+                << "1 - Search a Book\n2 - Take a Book\n3 - My Returned Books" << endl;
+            cout << "4 - My Books\n5 - Return a Book\n0 - Log_out\n"
+                << endl;
             cin >> Switch;
             switch (Switch)
             {
             case 1:
                 system("cls");
-                Admin_Lend(B, R, D, U);
+                _SearchBook(B); //*
                 break;
             case 2:
                 system("cls");
-                Admin_Return(U, B, D, R);
+                _Lend(U, B, D, R);
                 break;
             case 3:
                 system("cls");
-                break;
-            case 0:
-                system("cls");
-                break;
-            }
-            break;
-        case 7:
-            system("cls");
-            cout << "1 - Print all Reports\n2 - Print late Books\n3 - Papular Books\n4 - Active Users\n5 - Reports In a period of time\n0 - Back\n";
-            cin >> Switch;
-            switch (Switch)
-            {
-            case 1:
-                system("cls");
-                cout << "------<Lend Reports>-------\n";
-                Admin_PrintReports(R, File_Name3);
-                cout << "-----<Reserve Reports>-----\n";
-                Admin_PrintReports(R, File_Name4);
-                break;
-            case 2:
-                system("cls");
-                Admin_PrintLateBooks(U, B, D, R);
-                break;
-            case 3:
-                system("cls");
-                Admin_PrintPopularBooks(B, R);
+                _PrintMyReturnedBooks(U, B, D, R);
                 break;
             case 4:
                 system("cls");
-                Admin_PrintActiveUsers(U, R);
+                _PrintMyBooks(U, B, D, R);
                 break;
             case 5:
                 system("cls");
-                Admin_PrintReportsinPeriod(R);
+                _Return(U, B, D, R);
                 break;
             case 0:
                 system("cls");
+                cout << "Goodbye " << endl;
+                goto lable1;
+                break;
+            default:
+                system("cls");
+                cout << "Input Error" << endl;
                 break;
             }
-            break;
-        case 8:
-            system("cls");
-            _AddUser(U); //*
-            system("cls");
-            break;
-        case 0:
-            system("cls");
-            cout << "Goodbye " << endl; //<<U.Name<<endl
-            goto lable1;
-            break;
-        default:
-            cout << "Input Error" << endl;
-            break;
-        }
-    } while (1);
-labble2:
-    do
-    {
-        cout << "Today: " << Today << endl
-             << "1 - Search a Book\n2 - Take a Book\n3 - My Returned Books" << endl;
-        cout << "4 - My Books\n5 - Return a Book\n0 - Log_out\n"
-             << endl;
-        cin >> Switch;
-        switch (Switch)
-        {
-        case 1:
-            system("cls");
-            _SearchBook(B); //*
-            break;
-        case 2:
-            system("cls");
-            _Lend(U, B, D, R);
-            break;
-        case 3:
-            system("cls");
-            _PrintMyReturnedBooks(U, B, D, R);
-            break;
-        case 4:
-            system("cls");
-            _PrintMyBooks(U, B, D, R);
-            break;
-        case 5:
-            system("cls");
-            _Return(U, B, D, R);
-            break;
-        case 0:
-            system("cls");
-            cout << "Goodbye " << endl;
-            goto lable1;
-            break;
-        default:
-            system("cls");
-            cout << "Input Error" << endl;
-            break;
-        }
-    } while (1);
-    //------------------------------------------*/
+        } while (1);
+
+    }
 }
