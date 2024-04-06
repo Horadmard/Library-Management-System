@@ -149,6 +149,7 @@ void _RemoveUser(User RUser, Report R)
     cout << "Done!" << endl;
     return;
 }
+
 void _EditUser(User RUser)
 {
     fstream X(File_Name, ios::out | ios::in | ios::binary);
@@ -228,6 +229,7 @@ void _EditUser(User RUser)
     X.close();
     return;
 }
+
 void _EditBook(Book RBook)
 {
     fstream X(File_Name2, ios::out | ios::in | ios::binary);
@@ -428,6 +430,7 @@ void _RemoveBook(Book RBook, Report R)
     cout << "Done!" << endl;
     return;
 }
+
 void _SearchBook(Book book)
 {
     fstream X(File_Name2, ios::in | ios::binary);
