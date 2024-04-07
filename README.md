@@ -1,1 +1,3 @@
-# Library Management System as Advanced-Programming final project
+# Library Management System
+
+Done as Advanced-Programming final project.
