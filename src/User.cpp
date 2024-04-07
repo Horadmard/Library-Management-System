@@ -1,34 +1,44 @@
 class User
 {
 public:
+
     char Name[31], Family[31], Fname[31], Email[31];
     Date BD;
     int User_name, Pass;
     bool Active = true, Ultimate_Access;
 };
-istream &operator>>(istream &i, User &a)
+
+istream &operator>>(istream &i, User &User)
 {
-    cout << "<User Information>" << endl;
-    cout << "First Name:";
-    i >> a.Name;
+    cout << "<User Information>" << endl << "First Name:";
+    i >> User.Name;
+
     cout << "Last Name:";
-    i >> a.Family;
+    i >> User.Family;
+
     cout << "Father's name:";
-    i >> a.Fname;
+    i >> User.Fname;
+
     cout << "Birthday:";
-    i >> a.BD;
+    i >> User.BD;
+
     cout << "Password:";
-    i >> a.Pass;
+    i >> User.Pass;
+
     return i;
 }
-ostream &operator<<(ostream &o, User a)
+
+ostream &operator<<(ostream &o, User User)
 {
     char Ultimate[] = "Member";
-    if (a.Ultimate_Access)
+    if (User.Ultimate_Access)
         strcpy(Ultimate, "Admin");
-    o << a.User_name << "-" << a.Name << " " << a.Family << " <" << Ultimate << ">" << endl
-      << "Birthday: " << a.BD << endl
-      << "Father's name: " << a.Fname << endl
-      << "Password: " << a.Pass;
+
+    o << User.User_name << "-" << User.Name << " " << User.Family << " <" << Ultimate << ">" << endl
+
+      << "Birthday: " << User.BD << endl
+      << "Father's name: " << User.Fname << endl
+      << "Password: " << User.Pass;
+
     return o;
 }

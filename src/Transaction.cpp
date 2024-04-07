@@ -1,6 +1,7 @@
 class Report
 {
 public:
+
     Date Start, End;
     int User_name, Book_code;
     bool Expire;
@@ -13,5 +14,6 @@ ostream &operator<<(ostream &o, Report a)
       << "Book(" << a.Book_code << ")" << endl
       << "Expire(" << a.Expire << ")" << endl
       << "/" << a.End << "/" << endl;
+      
     return o;
 }
