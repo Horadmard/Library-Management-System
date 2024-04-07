@@ -571,7 +571,8 @@ void _PrintBooKs(Book book)
     }
     Y.close();
 }
-//--------------------------------------------------
+
+
 void _Record(Report R, char File_Name[])
 {
     fstream X(File_Name, ios::app | ios::binary);
@@ -613,9 +614,12 @@ void _Lend(User U, Book B, Date D, Report R)
         Y.close();
         return;
     }
+
     _PrintBooKs(B);
+
     cout << "Enter a Bookcode: ";
     cin >> Book_code;
+    
     if (Book_code == 0)
     {
         X.close();
@@ -623,6 +627,7 @@ void _Lend(User U, Book B, Date D, Report R)
         system("cls");
         return;
     }
+
     if (_FileSize(File_Name2) / sizeof(Book) < Book_code)
     {
         system("cls");

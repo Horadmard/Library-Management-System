@@ -210,7 +210,7 @@ int main()
             case 0:
                 system("cls");
                 cout << "Goodbye " << endl;
-                goto lable1;
+                main();
                 break;
             default:
                 system("cls");
